@@ -39,13 +39,14 @@ retriever = docsearch.as_retriever(
     search_kwargs={"k": 3}
 )
 
+from langchain_groq import ChatGroq
+import os
 
-# -------------------- LLM (Ollama Mistral) --------------------
-chatModel = ChatOllama(
-    model="mistral",       # uses your local ollama model
+chatModel = ChatGroq(
+    model="mixtral-8x7b-32768",   # best for RAG
+    groq_api_key=os.environ["GROQ_API_KEY"],
     temperature=0.2
 )
-
 
 # -------------------- Prompt --------------------
 prompt = ChatPromptTemplate.from_messages(
